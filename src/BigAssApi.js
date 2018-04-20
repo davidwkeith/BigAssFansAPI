@@ -1,6 +1,7 @@
 const dgram = require("dgram");
 const BigAssFan = require('./BigAssFan');
 const BigAssLight = require('./BigAssLight');
+const BigAssSwitch = require('./BigAssSwitch');
 const BigAssProperty = require('./BigAssProperty');
 const { syncingCallback, retryCall, myLogWrapper } = require('./utils');
 
@@ -58,13 +59,14 @@ function FanMaster (numberOfExpectedDevices) {
         if (msg[0] == "ALL") {
             return; // Message not addressed to us
         }
+        console.log(msg);
         const deviceType = msg[4].split(",",1); // Grab first part of string before ","
         if (deviceType == "FAN") {
             addDevice(new BigAssFan(msg[0], msg[3], address, this));
         } else if (deviceType == "LIGHT") {
             addDevice(new BigAssLight(msg[0], msg[3], address, this));
         } else if (deviceType == "SWITCH") {
-            myLogWrapper("Skipping wall control - TODO : Add support for wall control");
+            addDevice(new BigAssSwitch(msg[0], msg[3], address, this));
         } else {
             myLogWrapper("Received message from unknown fan - rescanning");
             this.rescanForDevices();

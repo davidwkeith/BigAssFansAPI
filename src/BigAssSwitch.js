@@ -1,8 +1,8 @@
 const BigAssProperty = require('./BigAssProperty');
 const { syncingCallback, retryCall, myLogWrapper } = require('./utils');
 
-module.exports = function BigAssLight (name, id, address, master) {
-    this.type = 'light';
+module.exports = function BigAssSwitch (name, id, address, master) {
+    this.type = 'switch';
     this.name = name;
     this.id = id ? id : name; // Use the name as the backup if no ID is available
     this.address = address;
@@ -13,13 +13,6 @@ module.exports = function BigAssLight (name, id, address, master) {
     this.propertyListeners = [];
     this.maxRetries = 10;        // For properties
     this.waitTimeOnRetry = 250;  // For properties - in ms
-
-    this.light = new BigAssProperty('light', this);
-    this.light.createGetField('brightness', ['LIGHT', 'LEVEL'], true, 'ACTUAL'); // 0-16
-    this.light.createGetField('min', ['LIGHT', 'LEVEL'], true, 'MIN');
-    this.light.createGetField('max', ['LIGHT', 'LEVEL'], true, 'MAX');
-    this.light.createGetField('auto', ['LIGHT', 'AUTO'], true, undefined, 'ON', 'OFF'); // Light sensor enabled
-    this.light.createGetField('exists', ['DEVICE', 'LIGHT'], false, undefined, "PRESENT"); // Unknown false string.. WAY too lazy to unplug from fan
 
     this.sensor = new BigAssProperty('sensor', this);
     this.sensor.createGetField('isOccupied', ['SNSROCC', 'STATUS'], false, undefined, 'OCCUPIED', 'UNOCCUPIED');

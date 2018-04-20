@@ -2,6 +2,7 @@ const BigAssProperty = require('./BigAssProperty');
 const { syncingCallback, retryCall, myLogWrapper } = require('./utils');
 
 module.exports = function BigAssFan (name, id, address, master) {
+    this.type = 'fan';
     this.name = name;
     this.id = id ? id : name; // Use the name as the backup if no ID is available
     this.address = address;

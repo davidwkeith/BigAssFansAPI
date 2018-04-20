@@ -1,6 +1,6 @@
 var bigAssApi = require("../src/BigAssApi");
 
-var myMaster = new bigAssApi.FanMaster(1); // Expect only one device in my setup
+var myMaster = new bigAssApi.FanMaster(4); // Expect only one device in my setup
 
 myMaster.onDeviceFullyUpdated = function(myBigAss){
 	console.log("Found a new device with name '" + myBigAss.name + "'")
