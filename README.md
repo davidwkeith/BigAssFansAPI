@@ -1,6 +1,6 @@
 Unofficial Big Ass API
 ======================
-This is this an unofficial Node.js API for [Big Ass Fans and lights with SenseME](www.bigassfans.com).
+This is this an unofficial Node.js API for [Big Ass Fans and lights with SenseME](https://www.bigassfans.com/
 
 What this could be/is used for
 ------------------------------
